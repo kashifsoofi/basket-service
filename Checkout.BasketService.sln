@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkout.BasketService.Inte
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkout.BasketService", "Checkout.BasketService\Checkout.BasketService.csproj", "{098554B4-B632-4BC6-92DE-CE275E1A60B7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkout.BasketService.UnitTests", "Checkout.BasketService.UnitTests\Checkout.BasketService.UnitTests.csproj", "{9B4B1BDA-B7AC-4CDA-9EB4-208333207C93}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,8 +23,13 @@ Global
 		{098554B4-B632-4BC6-92DE-CE275E1A60B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{098554B4-B632-4BC6-92DE-CE275E1A60B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{098554B4-B632-4BC6-92DE-CE275E1A60B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B4B1BDA-B7AC-4CDA-9EB4-208333207C93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B4B1BDA-B7AC-4CDA-9EB4-208333207C93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B4B1BDA-B7AC-4CDA-9EB4-208333207C93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B4B1BDA-B7AC-4CDA-9EB4-208333207C93}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{8C2B7626-2346-4C08-826A-C98018563E77} = {C699BBF3-E3F0-4B85-BA63-CD48D02947A1}
+		{9B4B1BDA-B7AC-4CDA-9EB4-208333207C93} = {C699BBF3-E3F0-4B85-BA63-CD48D02947A1}
 	EndGlobalSection
 EndGlobal

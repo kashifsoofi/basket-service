@@ -13,5 +13,10 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
+    <Folder Include="Stores\" />
+    <Folder Include="Models\" />
+    <Folder Include="Stores\InMemory\" />
+    <Folder Include="Services\" />
+    <Folder Include="Services\Results\" />
   </ItemGroup>
 </Project>
