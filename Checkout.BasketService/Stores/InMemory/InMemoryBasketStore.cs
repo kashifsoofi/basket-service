@@ -44,18 +44,14 @@ namespace Checkout.BasketService.Stores.InMemory
             }
         }
 
-        public void UpdateItemQuantity(string customerId, string itemId, int difference)
+        public void ChangeItemQuantity(string customerId, string itemId, int newQuantity)
         {
             var basket = FindByCustomerId(customerId);
             var item = basket?.Items.FirstOrDefault(x => x.ItemId == itemId);
             if (item != null)
             {
-                var newQuantity = item.Quantity + difference;
-                if (newQuantity <= 0)
-                {
+                if (newQuantity < 0)
                     newQuantity = 0;
-                }
-
                 var updatedItem = new Item(itemId, newQuantity);
                 basket.Items.Remove(item);
                 basket.Items.Add(updatedItem);

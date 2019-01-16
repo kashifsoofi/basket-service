@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Checkout.BasketService.Models;
+﻿using Checkout.BasketService.Models;
 using Checkout.BasketService.Services.Results;
 using Checkout.BasketService.Stores;
 
@@ -29,6 +28,30 @@ namespace Checkout.BasketService.Services
 
             _basketStore.Create(customerId);
             return CreateBasketResult.Created;
+        }
+
+        public Basket AddItem(string customerId, Item item)
+        {
+            _basketStore.AddItem(customerId, item);
+            return GetBasketByCustomerId(customerId);
+        }
+
+        public Basket ChangeItemQuantity(string customerId, string itemId, int newQuantity)
+        {
+            _basketStore.ChangeItemQuantity(customerId, itemId, newQuantity);
+            return GetBasketByCustomerId(customerId);
+        }
+
+        public Basket RemoveItem(string customerId, string itemId)
+        {
+            _basketStore.RemoveItem(customerId, itemId);
+            return GetBasketByCustomerId(customerId);
+        }
+
+        public Basket ClearBasket(string customerId)
+        {
+            _basketStore.ClearBasket(customerId);
+            return GetBasketByCustomerId(customerId);
         }
     }
 }

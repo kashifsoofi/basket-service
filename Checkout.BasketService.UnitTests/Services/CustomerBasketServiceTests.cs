@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Checkout.BasketService.Models;
 using Checkout.BasketService.Services;
 using Checkout.BasketService.Services.Results;
@@ -75,6 +74,66 @@ namespace Checkout.BasketService.UnitTests.Services
             result.Should().Be(CreateBasketResult.Created);
             _mockBasketStore.Verify(x => x.FindByCustomerId(_testCustomerId), Times.Once);
             _mockBasketStore.Verify(x => x.Create(_testCustomerId), Times.Once);
+        }
+
+        [Fact]
+        public void AddItem_should_add_item_to_store()
+        {
+            var basket = new Basket(_testCustomerId, new List<Item>());
+            _mockBasketStore.Setup(x => x.FindByCustomerId(_testCustomerId))
+                .Returns(basket);
+            _mockBasketStore.Setup(x => x.AddItem(_testCustomerId, It.IsAny<Item>()))
+                .Verifiable();
+
+            var result = _sut.AddItem(_testCustomerId, new Item("item1", 1));
+
+            _mockBasketStore.Verify(x => x.FindByCustomerId(_testCustomerId), Times.Once);
+            _mockBasketStore.Verify(x => x.AddItem(_testCustomerId, It.IsAny<Item>()), Times.Once);
+        }
+
+        [Fact]
+        public void ChangeItemQuantity_should_change_item_quantity_to_store()
+        {
+            var basket = new Basket(_testCustomerId, new List<Item>());
+            _mockBasketStore.Setup(x => x.FindByCustomerId(_testCustomerId))
+                .Returns(basket);
+            _mockBasketStore.Setup(x => x.ChangeItemQuantity(_testCustomerId, "item1", 5))
+                .Verifiable();
+
+            var result = _sut.ChangeItemQuantity(_testCustomerId, "item1", 5);
+
+            _mockBasketStore.Verify(x => x.FindByCustomerId(_testCustomerId), Times.Once);
+            _mockBasketStore.Verify(x => x.ChangeItemQuantity(_testCustomerId, "item1", 5), Times.Once);
+        }
+
+        [Fact]
+        public void RemoveItem_should_remove_item_from_store()
+        {
+            var basket = new Basket(_testCustomerId, new List<Item>());
+            _mockBasketStore.Setup(x => x.FindByCustomerId(_testCustomerId))
+                .Returns(basket);
+            _mockBasketStore.Setup(x => x.RemoveItem(_testCustomerId, "item1"))
+                .Verifiable();
+
+            var result = _sut.RemoveItem(_testCustomerId, "item1");
+
+            _mockBasketStore.Verify(x => x.FindByCustomerId(_testCustomerId), Times.Once);
+            _mockBasketStore.Verify(x => x.RemoveItem(_testCustomerId, "item1"), Times.Once);
+        }
+
+        [Fact]
+        public void ClearBasket_should_clear_items_from_store()
+        {
+            var basket = new Basket(_testCustomerId, new List<Item>());
+            _mockBasketStore.Setup(x => x.FindByCustomerId(_testCustomerId))
+                .Returns(basket);
+            _mockBasketStore.Setup(x => x.ClearBasket(_testCustomerId))
+                .Verifiable();
+
+            var result = _sut.ClearBasket(_testCustomerId);
+
+            _mockBasketStore.Verify(x => x.FindByCustomerId(_testCustomerId), Times.Once);
+            _mockBasketStore.Verify(x => x.ClearBasket(_testCustomerId), Times.Once);
         }
     }
 }

@@ -90,11 +90,11 @@ namespace Checkout.BasketService.UnitTests.Stores
         }
 
         [Theory]
-        [InlineData(2, 3, 5)]
-        [InlineData(0, 3, 3)]
-        [InlineData(2, -1, 1)]
+        [InlineData(2, 3, 3)]
+        [InlineData(0, 5, 5)]
+        [InlineData(2, 0, 0)]
         [InlineData(3, -5, 0)]
-        public void UpdateItemQuantity_should_update_item_quantity(int initialQuantity, int difference, int expected)
+        public void UpdateItemQuantity_should_update_item_quantity(int initialQuantity, int newQuantity, int expected)
         {
             _baskets.Add(new Basket(_testCustomerId,
                 new List<Item>
@@ -102,7 +102,7 @@ namespace Checkout.BasketService.UnitTests.Stores
                     new Item("Item1", initialQuantity)
                 }));
 
-            _sut.UpdateItemQuantity(_testCustomerId, "Item1", difference);
+            _sut.ChangeItemQuantity(_testCustomerId, "Item1", newQuantity);
 
             _baskets.First().Items.Count.Should().Be(1);
             _baskets.First().Items.First().ItemId.Should().Be("Item1");

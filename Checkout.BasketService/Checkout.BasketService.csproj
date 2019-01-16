@@ -18,5 +18,6 @@
     <Folder Include="Stores\InMemory\" />
     <Folder Include="Services\" />
     <Folder Include="Services\Results\" />
+    <Folder Include="Models\Requests\" />
   </ItemGroup>
 </Project>

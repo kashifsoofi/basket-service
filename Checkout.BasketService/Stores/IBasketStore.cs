@@ -7,7 +7,7 @@ namespace Checkout.BasketService.Stores
         Basket FindByCustomerId(string customerId);
         void Create(string customerId);
         void AddItem(string customerId, Item item);
-        void UpdateItemQuantity(string customerId, string itemId, int difference);
+        void ChangeItemQuantity(string customerId, string itemId, int difference);
         void RemoveItem(string customerId, string itemId);
         void ClearBasket(string customerId);
     }
