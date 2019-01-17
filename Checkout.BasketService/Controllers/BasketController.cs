@@ -37,7 +37,8 @@ namespace Checkout.BasketService.Controllers
             }
 
             var location = Url.Action("Get", "Basket", new { customerId }, Url.ActionContext.HttpContext.Request.Scheme);
-            return Created(location, customerId);
+            var basket = _basketService.GetBasketByCustomerId(customerId);
+            return Created(location, basket);
         }
     }
 }
