@@ -46,9 +46,8 @@ namespace Checkout.BasketService.UnitTests.Controllers
             _mockBasketService.Setup(x => x.ChangeItemQuantity(_testCustomerId, "Item1", 5))
                 .Returns(basket);
 
-            var result = _sut.ChangeItemQuantity(_testCustomerId, new ChangeItemQuantityRequest
+            var result = _sut.ChangeItemQuantity(_testCustomerId, "Item1", new ChangeQuantityRequest
             {
-                ItemId = "Item1",
                 NewQuantity = 5
             });
 

@@ -17,6 +17,7 @@
   <ItemGroup>
     <Compile Remove="UnitTest1.cs" />
     <Compile Remove="Stores\InMemory\InMemoryBasketStoreTests.cs" />
+    <Compile Remove="Controllers\BasketControllerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />

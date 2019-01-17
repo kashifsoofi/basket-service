@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Checkout.BasketService.Controllers
 {
-    [Route("api/{customerId}/[controller]")]
+    [Route("api/{customerId}/basket/items")]
     public class BasketItemsController : ControllerBase
     {
         private readonly IBasketService _basketService;
@@ -22,10 +22,11 @@ namespace Checkout.BasketService.Controllers
             return new OkObjectResult(basket);
         }
 
+        [Route("{itemId}")]
         [HttpPut]
-        public IActionResult ChangeItemQuantity(string customerId, [FromBody] ChangeItemQuantityRequest request)
+        public IActionResult ChangeItemQuantity(string customerId, string itemId, [FromBody] ChangeQuantityRequest request)
         {
-            var basket = _basketService.ChangeItemQuantity(customerId, request.ItemId, request.NewQuantity);
+            var basket = _basketService.ChangeItemQuantity(customerId, itemId, request.NewQuantity);
             return new OkObjectResult(basket);
         }
 

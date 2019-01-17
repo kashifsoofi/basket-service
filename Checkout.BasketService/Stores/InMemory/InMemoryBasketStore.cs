@@ -13,6 +13,10 @@ namespace Checkout.BasketService.Stores.InMemory
             _respository = baskets;
         }
 
+        public InMemoryBasketStore()
+            : this(new List<Basket>())
+        { }
+
         public Basket FindByCustomerId(string customerId)
         {
             return _respository.FirstOrDefault(x => x.CustomerId == customerId);
@@ -46,16 +50,18 @@ namespace Checkout.BasketService.Stores.InMemory
 
         public void ChangeItemQuantity(string customerId, string itemId, int newQuantity)
         {
+            if (newQuantity < 0)
+                newQuantity = 0;
+
             var basket = FindByCustomerId(customerId);
-            var item = basket?.Items.FirstOrDefault(x => x.ItemId == itemId);
-            if (item != null)
+            var existingItem = basket?.Items.FirstOrDefault(x => x.ItemId == itemId);
+            if (existingItem != null)
             {
-                if (newQuantity < 0)
-                    newQuantity = 0;
-                var updatedItem = new Item(itemId, newQuantity);
-                basket.Items.Remove(item);
-                basket.Items.Add(updatedItem);
+                basket.Items.Remove(existingItem);
             }
+
+            var item = new Item(itemId, newQuantity);
+            basket.Items.Add(item);
         }
 
         public void RemoveItem(string customerId, string itemId)

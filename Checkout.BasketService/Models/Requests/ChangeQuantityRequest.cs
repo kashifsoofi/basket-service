@@ -1,8 +1,7 @@
 ﻿namespace Checkout.BasketService.Models.Requests
 {
-    public class ChangeItemQuantityRequest
+    public class ChangeQuantityRequest
     {
-        public string ItemId { get; set; }
         public int NewQuantity { get; set; }
     }
 }
